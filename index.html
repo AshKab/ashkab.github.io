@@ -116,16 +116,63 @@
     .service-desc { font-size: 0.8rem; line-height: 1.8; color: rgba(250,247,242,0.45); font-weight: 300; }
 
     /* GALLERY */
-    #gallery { padding: 120px 60px; }
-    .gallery-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 60px; }
-    .gallery-masonry { columns: 3; column-gap: 16px; }
-    .gallery-item { break-inside: avoid; margin-bottom: 16px; overflow: hidden; position: relative; }
-    .gallery-item-inner { overflow: hidden; position: relative; }
-    .gallery-item-inner img { width: 100%; display: block; object-fit: cover; transition: transform 0.6s; }
-    .gallery-item:hover img { transform: scale(1.06); }
-    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,20,16,0.7) 0%, transparent 55%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 24px; }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay span { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--cream); font-style: italic; }
+.slider-wrapper {
+  position: relative;
+}
+
+.slider-gallery {
+  display: flex;
+  gap: 24px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+}
+
+.slide {
+  flex: 0 0 28%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 3 / 4;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s ease;
+}
+
+.slide:hover img {
+  transform: scale(1.05);
+}
+
+/* BUTTONS */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  padding: 10px 16px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 6px;
+}
+
+.slider-btn.left { left: 10px; }
+.slider-btn.right { right: 10px; }
+
+/* responsive */
+@media (max-width: 1024px) {
+  .slide { flex: 0 0 45%; }
+}
+@media (max-width: 600px) {
+  .slide { flex: 0 0 80%; }
+}
     .insta-link { color: var(--dark); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; font-weight: 300; display: flex; align-items: center; gap: 10px; opacity: 0.7; transition: opacity 0.3s; }
     .insta-link::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
     .insta-link:hover { opacity: 1; }
@@ -269,6 +316,8 @@
 
   </style>
 </head>
+
+
 <body>
 
 <!-- NAV -->
@@ -403,53 +452,36 @@
 
 <!-- GALLERY -->
 <section id="gallery">
-  <div class="gallery-header reveal">
-    <div>
-      <p class="section-label">Portfolio</p>
-      <h2 class="section-title">Moments of <em>Elegance</em></h2>
+  <div class="gallery-header">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">Signature <em>Work</em></h2>
+  </div>
+
+  <div class="slider-wrapper">
+
+    <!-- LEFT BUTTON -->
+    <button class="slider-btn left">&#10094;</button>
+
+    <!-- SLIDER -->
+    <div class="slider-gallery" id="slider">
+
+      <!-- ALL IMAGES -->
+      <div class="slide"><img src="https://i.ibb.co/4g9fkY98/Where-tradition-meets-artistry-your-perfect-muhurtham-look-crafted-to-last-a-lifetime-muh.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/JRNzmzLd/Softly-crafted-for-that-natural-glow-only-to-justify-that-the-art-of-less-is-more-for-your.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/qFPJgGnz/Her-hair-intricately-woven-into-a-traditional-updo-is-adorned-with-delicate-flowers-and-shimme.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/Zpmrbkn6/Embrace-the-beauty-of-red-saree-Sweet-bride-nivi-venkatesh-for-her-muhurtham-DM-for-booking.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/TB0SsRpq/Grace-in-every-Glance-Beauty-In-Every-Frame-Makeup-styling-sowmyas-hairandmakeup-Shot-by-m.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/5X48vyZX/Simple-yet-elegant-Reception-look-arthi-anandhan-Makeup-and-hairdo-sowmyas-hairandmak.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/sJkJ5QY4/Channeling-elegance-with-a-touch-of-vintage-charm-for-the-beautiful-bride-arthi-anandhan.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/cKVyvN2b/For-bridal-bookings-enquiries-do-DM-Follow-sowmyas-hairandmakeup-Inframe-yazh-priya-M.jpg"></div>
+      <div class="slide"><img src="https://i.ibb.co/xqBK5Ntk/Beautiful-mom-to-be-Hairstyle-pradhee-hairstylist-Makeup-sowmyas-hairandmakeup-pradheeha.jpg"></div>
+
     </div>
-    <a href="https://www.instagram.com/sowmyas_hairandmakeup/" target="_blank" class="insta-link">View on Instagram</a>
-  </div>
-  <!-- GALLERY -->
-<div class="gallery-grid">
 
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/4g9fkY98/Where-tradition-meets-artistry-your-perfect-muhurtham-look-crafted-to-last-a-lifetime-muh.jpg">
-  </div>
+    <!-- RIGHT BUTTON -->
+    <button class="slider-btn right">&#10095;</button>
 
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/JRNzmzLd/Softly-crafted-for-that-natural-glow-only-to-justify-that-the-art-of-less-is-more-for-your.jpg">
   </div>
-
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/qFPJgGnz/Her-hair-intricately-woven-into-a-traditional-updo-is-adorned-with-delicate-flowers-and-shimme.jpg">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/Zpmrbkn6/Embrace-the-beauty-of-red-saree-Sweet-bride-nivi-venkatesh-for-her-muhurtham-DM-for-booking.jpg">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/TB0SsRpq/Grace-in-every-Glance-Beauty-In-Every-Frame-Makeup-styling-sowmyas-hairandmakeup-Shot-by-m.jpg">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/5X48vyZX/Simple-yet-elegant-Reception-look-arthi-anandhan-Makeup-and-hairdo-sowmyas-hairandmak.jpg">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/sJkJ5QY4/Channeling-elegance-with-a-touch-of-vintage-charm-for-the-beautiful-bride-arthi-anandhan.jpg">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/cKVyvN2b/For-bridal-bookings-enquiries-do-DM-Follow-sowmyas-hairandmakeup-Inframe-yazh-priya-M.jpg">
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://i.ibb.co/xqBK5Ntk/Beautiful-mom-to-be-Hairstyle-pradhee-hairstylist-Makeup-sowmyas-hairandmakeup-pradheeha.jpg">
-  </div>
-
-</div>
 </section>
 
 <!-- PROCESS -->
@@ -627,6 +659,61 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
 </script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.getElementById('slider');
+  const leftBtn = document.querySelector('.slider-btn.left');
+  const rightBtn = document.querySelector('.slider-btn.right');
+
+  if (!slider || !leftBtn || !rightBtn) return;
+
+  let autoScroll = null;
+
+  function startAutoScroll() {
+    // prevent duplicate intervals
+    if (autoScroll) return;
+
+    autoScroll = setInterval(() => {
+      slider.scrollLeft += 1;
+
+      if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 2) {
+        slider.scrollLeft = 0;
+      }
+    }, 20);
+  }
+
+  function stopAutoScroll() {
+    clearInterval(autoScroll);
+    autoScroll = null; // IMPORTANT
+  }
+
+  function manualScroll(amount) {
+    stopAutoScroll(); // stop cleanly
+    slider.scrollBy({ left: amount, behavior: 'smooth' });
+
+    // restart after user action
+    setTimeout(() => {
+      startAutoScroll();
+    }, 800);
+  }
+
+  // BUTTONS
+  rightBtn.addEventListener('click', () => manualScroll(400));
+  leftBtn.addEventListener('click', () => manualScroll(-400));
+
+  // HOVER PAUSE
+  slider.addEventListener('mouseenter', stopAutoScroll);
+  slider.addEventListener('mouseleave', startAutoScroll);
+
+  // START
+  startAutoScroll();
+});
+</script>
+
 </body>
 </html>
